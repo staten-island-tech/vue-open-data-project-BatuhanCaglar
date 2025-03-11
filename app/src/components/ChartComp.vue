@@ -2,6 +2,8 @@
 import { ref, onMounted } from 'vue'
 import { Chart, registerables } from 'chart.js'
 import { onBeforeUnmount } from 'vue'
+import { store } from '../assets/store'
+const bkevicts = ref()
 
 Chart.register(...registerables)
 
