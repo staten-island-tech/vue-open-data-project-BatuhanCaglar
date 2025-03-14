@@ -10,7 +10,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import EvictionCard from '../components/EvictionCard.vue'
-import { store } from '../assets/store'
 const evictions = ref([])
 
 const bkevicts = ref([])
@@ -37,8 +36,6 @@ function filterEvicts(evicts) {
       mhevicts.value.push(element)
     }
   })
-  store.bkevicts = bkevicts
-  console.log(bkevicts)
 }
 
 async function fetchEvictions() {
@@ -52,8 +49,6 @@ async function fetchEvictions() {
 }
 
 onMounted(fetchEvictions)
-
-//const Brooklynnum = evictions.filter((eviction) => eviction.borough === 'Brooklyn')
 </script>
 
 <style scoped>
