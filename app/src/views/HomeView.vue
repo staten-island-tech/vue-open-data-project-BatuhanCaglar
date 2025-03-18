@@ -3,6 +3,13 @@
     <h1>Evictions Extravaganza</h1>
     <div class="card-container">
       <EvictionCard v-for="(eviction, index) in evictions" :key="index" :eviction="eviction" />
+      <ChartComp
+        :bkArray="bkevicts.value"
+        :bxArray="bxevicts.value"
+        :siArray="sievicts.value"
+        :qnsArray="quevicts.value"
+        :mhArray="mhevicts.value"
+      />
     </div>
   </div>
 </template>
@@ -10,6 +17,8 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import EvictionCard from '../components/EvictionCard.vue'
+import ChartComp from '../components/ChartComp.vue'
+
 const evictions = ref([])
 
 const bkevicts = ref([])
@@ -48,7 +57,9 @@ async function fetchEvictions() {
   }
 }
 
-onMounted(fetchEvictions)
+onMounted(() => {
+  fetchEvictions()
+})
 </script>
 
 <style scoped>

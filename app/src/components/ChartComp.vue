@@ -1,14 +1,26 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { Chart, registerables } from 'chart.js'
 import { onBeforeUnmount } from 'vue'
+
+const props = defineProps({
+  bkArray: Array,
+  bxArray: Array,
+  siArray: Array,
+  qnsArray: Array,
+  mhArray: Array,
+})
+
+const bkLength = computed(() => props.bkArray.length)
+const bxLength = computed(() => props.bxArray.length)
+const siLength = computed(() => props.siArray.length)
+const qnsLength = computed(() => props.qnsArray.length)
+const mhLength = computed(() => props.mhArray.length)
 
 Chart.register(...registerables)
 
 const chartRef = ref(null)
 let chartInstance = null
-
-const bknum = length.bkevicts
 
 onMounted(() => {
   if (chartRef.value) {
@@ -19,7 +31,7 @@ onMounted(() => {
         datasets: [
           {
             label: 'Sales',
-            data: [bknum, 20, 30, 40, 50],
+            data: [bkLength, bxLength, siLength, qnsLength, mhLength],
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1,
