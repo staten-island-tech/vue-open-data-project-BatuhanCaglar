@@ -18,6 +18,7 @@
 import { ref, onMounted } from 'vue'
 import EvictionCard from '../components/EvictionCard.vue'
 import ChartComp from '../components/ChartComp.vue'
+import { setEvictionData } from '../data/evictionData'
 
 const evictions = ref([])
 
@@ -50,8 +51,8 @@ function filterEvicts(evicts) {
 async function fetchEvictions() {
   try {
     const response = await fetch('https://data.cityofnewyork.us/resource/6z8x-wfk4.json')
-    evictions.value = await response.json()
-    filterEvicts(evictions.value)
+    const evictions = await response.json()
+    setEvictionData(evictions)
   } catch (error) {
     console.error('Error fetching eviction data:', error)
   }
