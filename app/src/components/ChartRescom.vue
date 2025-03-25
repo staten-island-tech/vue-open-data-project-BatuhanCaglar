@@ -3,13 +3,14 @@
 import { ref, onMounted, watch } from 'vue'
 import { Chart, registerables } from 'chart.js'
 
+
 Chart.register(...registerables)
 
 const chartRef = ref(null)
 let chartInstance = null
 
-const possession = ref([])
-const evictions = ref([])
+const commercial = ref([])
+const residential = ref([])
 
 const fetchData = async () => {
   try {
@@ -24,8 +25,8 @@ const fetchData = async () => {
       return
     }
 
-    possession.value = data.filter(item => item.eviction_possession === 'Possession')
-    evictions.value = data.filter(item => item.eviction_possession === 'Eviction')
+    commercial.value = data.filter(item => item.residential_commercial_ind === 'Commercial')
+    residential.value = data.filter(item => item.residential_commercial_ind === 'Residential')
 
   } catch (error) {
     console.error('Error fetching data:', error)
@@ -42,10 +43,10 @@ const createChart = () => {
   chartInstance = new Chart(ctx, {
     type: 'pie',
     data: {
-      labels: ['Possession', 'Evictions'],
+      labels: ['Commercial', 'Residential'],
       datasets: [{
         label: 'Eviction Data',
-        data: [possession.value.length, evictions.value.length], 
+        data: [commercial.value.length, residential.value.length], 
         backgroundColor: [
           'rgb(54, 162, 235)', 
           'rgb(255, 99, 132)' 
@@ -61,10 +62,9 @@ onMounted(async () => {
   createChart()
 })
 
-watch([possession, evictions], createChart)
+watch([commercial, residential], createChart)
 
 </script>
-
 
 <template>
   <div class="chart-container">

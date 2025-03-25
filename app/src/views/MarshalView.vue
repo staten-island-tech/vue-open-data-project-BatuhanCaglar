@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h1>Eviction Chart</h1>
+      <h1>Marshals Chart</h1>
       <ChartMarshal />
       <button @click="$router.push('/')">Back to Home</button>
     </div>

@@ -1,13 +1,14 @@
 <template>
     <div>
-      <h1>Eviction or Possession Chart</h1>      
+      <h1>Residential or Commerical Chart</h1> 
       <button @click="$router.push('/')">Back to Home</button>
-      <ChartPie />
+      <ChartRescom />
+     
     </div>
   </template>
   
   <script setup>
-  import ChartPie from '@/components/ChartPie.vue';
+  import ChartRescom from '@/components/ChartRescom.vue';
   </script>
   
   <style scoped>
